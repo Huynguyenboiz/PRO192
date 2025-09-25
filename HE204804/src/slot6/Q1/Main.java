@@ -22,8 +22,8 @@ public class Main {
         }
     }
 
-    public static void displayData(String msg) {
-        System.out.println(msg);
+    public static void displayData(String sout) {
+        System.out.println(sout);
         for (int x : arr) {
             System.out.print(x + " ");
         }
@@ -31,31 +31,26 @@ public class Main {
     }
 
     public static int find2ndPosMax() {
-        if (arr.length < 2) return -1;
-        int max = -9999999;
-        for (int x : arr) {
-            if (x > max) max = x;
-        }
-        int pos = -1;
-        boolean foundFirst = false;
+        int[] freq = new int[21];
+        int[] secondIdx = new int[21];
+        for (int v = 0; v <= 20; v++) secondIdx[v] = -1;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == max) {
-                if (!foundFirst) {
-                    foundFirst = true;
-                } else {
-                    pos = i;
-                    break;
-                }
+            int v = arr[i];
+            if (++freq[v] == 2) {
+                secondIdx[v] = i;
             }
         }
-        return pos;
+        for (int v = 20; v >= 1; v--) {
+            if (secondIdx[v] != -1) return secondIdx[v];
+        }
+        return -1;
     }
 
     public static void sort() {
         int pos = find2ndPosMax();
-        if (pos == -1) pos = arr.length;
-        for (int i = 0; i < pos; i++) {
-            for (int j = i + 1; j < pos; j++) {
+        if (pos == -1) return;
+        for (int i = 0; i <= pos; i++) {
+            for (int j = i + 1; j <= pos; j++) {
                 if (arr[i] > arr[j]) {
                     int tmp = arr[i];
                     arr[i] = arr[j];
@@ -128,4 +123,3 @@ public class Main {
         displayAllPrimeNumbers();
     }
 }
-
