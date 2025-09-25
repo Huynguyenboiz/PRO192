@@ -32,7 +32,7 @@ public class Main {
 
     public static int find2ndPosMax() {
         if (arr.length < 2) return -1;
-        int max = Integer.MIN_VALUE;
+        int max = -9999999;
         for (int x : arr) {
             if (x > max) max = x;
         }
@@ -128,3 +128,4 @@ public class Main {
         displayAllPrimeNumbers();
     }
 }
+
